@@ -13,8 +13,6 @@ namespace Upstream.Testing.Tests
             goodTest.Success();
             goodTest.Dispose();
 
-            Assert.Wumbo();
-
             var wrongInputTest = new SampleTest(true);
             wrongInputTest.WrongInput();
             var wrongInputException = Assert.ThrowsAny<Exception>(() => wrongInputTest.Dispose());
