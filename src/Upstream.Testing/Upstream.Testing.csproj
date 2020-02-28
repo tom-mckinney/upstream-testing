@@ -6,6 +6,16 @@
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Title>Upstream.Testing</Title>
+    <PackageId>Upstream.Testing</PackageId>
+    <Authors>Tom McKinney</Authors>
+    <Description>A lightweight library for unit testing that reduces the boilerplate necessary for test-driven development and test isolation.</Description>
+    <PackageTags>test;unit test;integration test;TDD</PackageTags>
+    <RepositoryUrl>https://github.com/tom-mckinney/upstream-testing</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/tom-mckinney/upstream-testing/releases</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
