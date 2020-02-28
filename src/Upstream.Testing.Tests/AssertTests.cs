@@ -6,7 +6,7 @@ using Xunit.Sdk;
 
 namespace Upstream.Testing.Tests
 {
-    public class CustomAssertTests
+    public class AssertTests
     {
         [Fact]
         public void AllPropertiesMapped_success()

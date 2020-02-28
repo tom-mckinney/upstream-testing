@@ -7,7 +7,7 @@ using Xunit.Sdk;
 
 namespace Xunit
 {
-    partial class Assert
+    public partial class Assert
     {
         /// <summary>
         /// Asserts that all properties of <paramref name="actual"/> have been mapped from <paramref name="expected"/>.
