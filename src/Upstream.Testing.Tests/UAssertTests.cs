@@ -6,7 +6,7 @@ using Xunit.Sdk;
 
 namespace Upstream.Testing.Tests
 {
-    public class AssertTests
+    public class UAssertTests
     {
         [Fact]
         public void AllPropertiesMapped_success()
@@ -14,7 +14,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar" };
             var actual = new { Foo = "Bar" };
 
-           var output = Assert.AllPropertiesMapped(expected, actual);
+           var output = UAssert.AllPropertiesMapped(expected, actual);
 
             Assert.True(output);
         }
@@ -25,7 +25,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar" };
             var actual = new { Foo = "Wumbo" };
 
-            Assert.Throws<TestingException>(() => Assert.AllPropertiesMapped(expected, actual));
+            Assert.Throws<TestingException>(() => UAssert.AllPropertiesMapped(expected, actual));
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar", Bar = "Foo" };
             var actual = new { Foo = "Bar" };
 
-            Assert.Throws<TestingException>(() => Assert.AllPropertiesMapped(expected, actual));
+            Assert.Throws<TestingException>(() => UAssert.AllPropertiesMapped(expected, actual));
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar", Bar = "Foo" };
             var actual = new { Foo = "Wumbo" };
 
-            var ex = Assert.Throws<AggregateException>(() => Assert.AllPropertiesMapped(expected, actual));
+            var ex = Assert.Throws<AggregateException>(() => UAssert.AllPropertiesMapped(expected, actual));
 
             Assert.Equal(2, ex.InnerExceptions.Count);
             Assert.IsType<TestingException>(ex.InnerExceptions[0]);
@@ -56,7 +56,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar", Bar = "Foo" };
             var actual = new { Foo = "Bar" };
 
-            var output = Assert.AllPropertiesMapped(expected, actual, excludedProperties: "Bar");
+            var output = UAssert.AllPropertiesMapped(expected, actual, excludedProperties: "Bar");
 
             Assert.True(output);
         }
@@ -67,7 +67,7 @@ namespace Upstream.Testing.Tests
             var expected = new { Foo = "Bar" };
             var actual = new { Wumbo = "Bar" };
 
-            var output = Assert.AllPropertiesMapped(expected, actual, translatedProperties: new Dictionary<string, string> { {"Foo", "Wumbo"} });
+            var output = UAssert.AllPropertiesMapped(expected, actual, translatedProperties: new Dictionary<string, string> { {"Foo", "Wumbo"} });
 
             Assert.True(output);
         }
@@ -77,7 +77,7 @@ namespace Upstream.Testing.Tests
         {
             var obj = new { Foo = "Bar" };
 
-            var output = Assert.NoPropertiesNullOrDefault(obj);
+            var output = UAssert.NoPropertiesNullOrDefault(obj);
 
             Assert.True(output);
         }
@@ -87,7 +87,7 @@ namespace Upstream.Testing.Tests
         {
             var obj = new { Foo = (string)null };
 
-            Assert.Throws<NotNullException>(() => Assert.NoPropertiesNullOrDefault(obj));
+            Assert.Throws<NotNullException>(() => UAssert.NoPropertiesNullOrDefault(obj));
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace Upstream.Testing.Tests
         {
             var obj = new { Foo = 0 };
 
-            Assert.Throws<NotEqualException>(() => Assert.NoPropertiesNullOrDefault(obj));
+            Assert.Throws<NotEqualException>(() => UAssert.NoPropertiesNullOrDefault(obj));
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace Upstream.Testing.Tests
         {
             var obj = new { Foo = (string)null, Bar = 0 };
 
-            var ex = Assert.Throws<AggregateException>(() => Assert.NoPropertiesNullOrDefault(obj));
+            var ex = Assert.Throws<AggregateException>(() => UAssert.NoPropertiesNullOrDefault(obj));
 
             Assert.Equal(2, ex.InnerExceptions.Count);
             Assert.IsType<NotNullException>(ex.InnerExceptions[0]);

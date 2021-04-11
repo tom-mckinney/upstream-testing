@@ -13,7 +13,27 @@ namespace Upstream.Testing
 
         protected virtual MockRepository MockRepository { get; } = new MockRepository(MockBehavior.Strict);
 
+        private T _testClass;
+
+        protected virtual T TestClass
+        {
+            get
+            {
+                if (_testClass == null)
+                {
+                    _testClass = CreateTestClass();
+                }
+
+                return _testClass;
+            }
+        }
+
         protected abstract T CreateTestClass();
+
+        protected virtual void ClearTestClass()
+        {
+            _testClass = null;
+        }
 
         protected virtual void VerifyMocks()
         {
